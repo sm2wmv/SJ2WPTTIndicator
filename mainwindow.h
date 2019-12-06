@@ -23,7 +23,7 @@ public:
 
 private:
     Ui::MainWindow *ui;
-    UDPServer *dxlogServer;
+    UDPServer *logServer;
     int m_nMouseClick_X_Coordinate;
     int m_nMouseClick_Y_Coordinate;
     QString displayName[STATION_COUNT];

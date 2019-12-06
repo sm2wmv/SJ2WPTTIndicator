@@ -49,9 +49,9 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->labelPTT3->setText(displayName[2]);
     ui->labelPTT4->setText(displayName[3]);
 
-    dxlogServer = new UDPServer();
-    dxlogServer->initSocket(networkPort);
-    connect(dxlogServer, SIGNAL(dataAvailable(char *,qint64, QHostAddress *, quint16 *)),SLOT(radioDataAvailable(char *,qint64, QHostAddress *, quint16 *)));
+    logServer = new UDPServer();
+    logServer->initSocket(networkPort);
+    connect(logServer, SIGNAL(dataAvailable(char * ,qint64 ,QHostAddress *,quint16 *)),SLOT(radioDataAvailable(char *,qint64, QHostAddress *, quint16 *)));
 
     this->setWindowFlags(Qt::FramelessWindowHint|Qt::WindowStaysOnTopHint);
 }
@@ -75,18 +75,18 @@ void MainWindow::radioDataAvailable(char *data, qint64 size, QHostAddress *fromA
             if (xml.isStartElement()) {
                 QString name = xml.name().toString();
 
-                if (name == "NetworkRadio") {
+                if (name == "RadioInfo") {
                     while(!xml.atEnd()) {
                         xml.readNextStartElement();
                         QString subName = xml.name().toString();
 
-                        if (subName == "ComputerName") {
+                        if (subName == "StationName") {
                             computerName = xml.readElementText();
                         }
-                        else if (subName == "Xmit") {
+                        else if (subName == "IsTransmitting") {
                             xmitStatus = xml.readElementText();
                         }
-                        else if (subName == "Message") {
+                        else if (subName == "FunctionKeyCaption") {
                             xmitMessage = xml.readElementText();
                         }
                     }
