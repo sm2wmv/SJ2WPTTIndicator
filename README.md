@@ -1,4 +1,4 @@
-# SJ2WPTTIndicator
+# SJ2W PTT Indicator
 
 This is a QT software that monitors network traffic from DXLog or N1MM and indicates if a radio is transmitting.
 
