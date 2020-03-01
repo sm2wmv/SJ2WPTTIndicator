@@ -30,7 +30,8 @@ private:
     QString networkName[STATION_COUNT];
     QString PTTStatus[STATION_COUNT];
     QString logSoftware;
-    int networkPort;
+    quint16 networkPort;
+    QString localIP;
 private slots:
     void radioDataAvailable(char *data, qint64 size, QHostAddress *fromAddr, quint16 *port);
 protected:

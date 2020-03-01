@@ -7,20 +7,11 @@ UDPServer::UDPServer(QObject *parent) : QObject(parent)
 
 }
 
-void UDPServer::initSocket(int port)
+void UDPServer::initSocket(QString localIP, quint16 port)
 {
     udpSocket = new QUdpSocket(this);
-    const QHostAddress &localhost = QHostAddress(QHostAddress::LocalHost);
 
-    QString addr = "127.0.0.1";
-
-    for (const QHostAddress &address: QNetworkInterface::allAddresses()) {
-        if (address.protocol() == QAbstractSocket::IPv4Protocol && address != localhost)
-            addr = address.toString();
-    }
-
-    udpSocket->bind(QHostAddress(addr), port);
-
+    udpSocket->bind(QHostAddress(localIP), port);
 
     connect(udpSocket, SIGNAL(readyRead()),this, SLOT(readPendingDatagrams()));
 }

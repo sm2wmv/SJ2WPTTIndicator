@@ -18,7 +18,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    logSoftware = "DXLog"; //Default
+    logSoftware = "N1MM"; //Default
 
     QSettings settings(QCoreApplication::applicationDirPath()+"/settings.ini",QSettings::IniFormat,0);
         settings.beginGroup("LOG");
@@ -34,6 +34,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
         settings.beginGroup("NETWORK");
             networkPort = settings.value("Port").toInt();
+            localIP = settings.value("LocalIP").toString();
             networkName[0] = settings.value("Station1NetworkName").toString();
             networkName[1] = settings.value("Station2NetworkName").toString();
             networkName[2] = settings.value("Station3NetworkName").toString();
@@ -50,7 +51,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->labelPTT4->setText(displayName[3]);
 
     logServer = new UDPServer();
-    logServer->initSocket(networkPort);
+    logServer->initSocket(localIP,networkPort);
     connect(logServer, SIGNAL(dataAvailable(char * ,qint64 ,QHostAddress *,quint16 *)),SLOT(radioDataAvailable(char *,qint64, QHostAddress *, quint16 *)));
 
     this->setWindowFlags(Qt::FramelessWindowHint|Qt::WindowStaysOnTopHint);

@@ -10,7 +10,7 @@ class UDPServer : public QObject
     Q_OBJECT
 public:
     explicit UDPServer(QObject *parent = nullptr);
-    void initSocket(int port);
+    void initSocket(QString localIP, quint16 port);
 
 private:
     QUdpSocket *udpSocket;
