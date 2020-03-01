@@ -13,6 +13,7 @@ The default setup was made for SJ2W where we have four positions. To modify the 
 Station1NetworkName=INBAND
 This is the name of the computer on the Network. This is the Windows network ID.
 
+LocalIP should be set to the IP address of your local machine. 
 Station1DisplayName=Inband
 This is the name that gets displayed on the GUI
 
@@ -23,5 +24,5 @@ In DXLog the software monitors the Interlock traffic between the computers via U
 
 N1MM
 ----
-To configure it for N1MM check the settings.ini and change the LogSoftware to N1MM and the Port to 12060. Select what IP you want to listen to, easiest in most cases it to broadcast the data to the loopback, 127.0.0.1. But this must match what you have configured in N1MM.
+To configure it for N1MM check the settings.ini and change the LogSoftware to N1MM and the Port to 12060. 
 
