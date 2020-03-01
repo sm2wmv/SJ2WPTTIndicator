@@ -23,5 +23,5 @@ In DXLog the software monitors the Interlock traffic between the computers via U
 
 N1MM
 ----
-To configure it for N1MM check the settings.ini and change the LogSoftware to N1MM and the Port to 12060.
+To configure it for N1MM check the settings.ini and change the LogSoftware to N1MM and the Port to 12060. Select what IP you want to listen to, easiest in most cases it to broadcast the data to the loopback, 127.0.0.1. But this must match what you have configured in N1MM.
 
